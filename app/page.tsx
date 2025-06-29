@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic';
+
 // Function to get all blog posts
 async function getAllPosts() {
   try {

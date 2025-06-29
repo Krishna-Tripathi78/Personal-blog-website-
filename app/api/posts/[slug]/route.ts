@@ -3,6 +3,8 @@ import dbConnect from '@/lib/mongodb';
 import Post from '@/models/Post';
 import slugify from 'slugify';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest, { params }: { params: { slug: string } }) {
   try {
     await dbConnect();
