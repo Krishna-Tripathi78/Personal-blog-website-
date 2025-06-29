@@ -1,0 +1,21 @@
+TODO List for Blog Project:
+
+✅ Basic blog functionality
+✅ Rich text editor
+✅ MongoDB connection
+✅ Admin dashboard
+
+🔄 Future improvements:
+- Add user authentication
+- Comment system
+- Categories/tags
+- Search functionality
+- Better mobile design
+- Image upload feature
+
+📝 Notes:
+- Remember to backup database
+- Test on different browsers
+- Maybe add dark mode later?
+
+Last updated: December 2024
