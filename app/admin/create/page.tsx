@@ -18,7 +18,7 @@ function CreatePost() {
     slug = slugify(title, { lower: true, strict: true })
   }
 
-  const submitPost = async (e) => {
+  const submitPost = async (e: React.FormEvent) => {
     e.preventDefault()
     
     // Basic validation

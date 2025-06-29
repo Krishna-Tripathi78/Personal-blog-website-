@@ -2,18 +2,23 @@ import Link from 'next/link'
 
 // Function to get all blog posts
 async function getAllPosts() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001'}/api/posts`, {
-    cache: 'no-store'
-  })
-  
-  if (!response.ok) {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001'}/api/posts`, {
+      cache: 'no-store'
+    })
+    
+    if (!response.ok) {
+      return []
+    }
+    
+    return response.json()
+  } catch (error) {
+    console.log('Failed to fetch posts during build')
     return []
   }
-  
-  return response.json()
 }
 
-// Home page component
+// Home page component  
 export default async function Home() {
   const posts = await getAllPosts()
 
@@ -29,7 +34,7 @@ export default async function Home() {
         </div>
       ) : (
         <div className="post-list">
-          {posts.map((post) => (
+          {posts.map((post: any) => (
             <div key={post._id} className="card">
               <h2 style={{marginBottom: '10px'}}>
                 <Link 

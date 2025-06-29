@@ -2,15 +2,20 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 async function getPost(slug: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001'}/api/posts/${slug}`, {
-    cache: 'no-store'
-  })
-  
-  if (!res.ok) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001'}/api/posts/${slug}`, {
+      cache: 'no-store'
+    })
+    
+    if (!res.ok) {
+      return null
+    }
+    
+    return res.json()
+  } catch (error) {
+    console.log('Failed to fetch post during build')
     return null
   }
-  
-  return res.json()
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {

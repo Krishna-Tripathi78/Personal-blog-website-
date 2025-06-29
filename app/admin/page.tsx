@@ -3,9 +3,16 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
+interface Post {
+  _id: string
+  title: string
+  slug: string
+  createdAt: string
+}
+
 // Admin dashboard component
 function AdminDashboard() {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
 
   // Load posts when component mounts
@@ -20,7 +27,7 @@ function AdminDashboard() {
     setLoading(false)
   }
 
-  const handleDelete = async (slug) => {
+  const handleDelete = async (slug: string) => {
     if (confirm('Delete this post?')) {
       await fetch(`/api/posts/${slug}`, {
         method: 'DELETE'
@@ -46,7 +53,7 @@ function AdminDashboard() {
         </div>
       ) : (
         <div className="post-list">
-          {posts.map((post) => (
+          {posts.map((post: Post) => (
             <div key={post._id} className="post-item">
               <div>
                 <h3>{post.title}</h3>
